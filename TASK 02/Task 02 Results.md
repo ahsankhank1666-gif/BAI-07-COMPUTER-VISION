@@ -51,6 +51,14 @@ This project evaluates the performance of three state-of-the-art Convolutional N
 ## Analytical Insights
 
 
+<img width="1280" height="576" alt="10" src="https://github.com/user-attachments/assets/fd00628c-8a78-4453-b71d-78150f08d8f9" />
+<img width="1280" height="576" alt="9" src="https://github.com/user-attachments/assets/9b62a32d-0a44-40c8-95d5-0730d088ad92" />
+<img width="1280" height="576" alt="8" src="https://github.com/user-attachments/assets/f30bfadf-0210-4bd8-9d6d-49279c0bd1db" />
+<img width="1280" height="576" alt="2" src="https://github.com/user-attachments/assets/27ad80ac-696f-4f9b-ab58-c34bf0efd424" />
+<img width="1280" height="576" alt="1" src="https://github.com/user-attachments/assets/c8b58e15-878f-46cc-8477-81cd0e649390" />
+<img width="1280" height="576" alt="11" src="https://github.com/user-attachments/assets/5f8ab7f0-237f-4663-baf0-0270e2497758" />
+
+
 * **Top Performing Model:** EfficientNetB0 demonstrated the highest baseline capability, achieving 83.52% accuracy and a 0.6945 Macro-F1 score without any filters[cite: 15].
 * **Filter Impact:** Aggressive filtering generally degrades model performance[cite: 15]. Smoothing filters caused slight drops in Macro-F1 across DenseNet121 and EfficientNetB0, though Gaussian filtering showed a rare exception by slightly improving EfficientNetB0's Macro-F1 to 0.7148[cite: 15]. Sobel edge detection severely crippled all three models[cite: 15].
 * **Greatest Disruption:** The Sobel filter produced the most drastic negative change across all architectures[cite: 15]. DenseNet121's Macro-F1 dropped from 0.5291 to 0.2440, and EfficientNetB0's Macro-F1 fell from 0.6945 to 0.4574[cite: 15].
