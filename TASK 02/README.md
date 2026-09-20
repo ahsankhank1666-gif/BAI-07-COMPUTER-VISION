@@ -43,7 +43,7 @@ The table below outlines the performance metrics of each model across different 
 ## 📂 Repository Contents
 
 * **`Lab_02_Skin_Lesion_Filtering.ipynb`**: The primary executable Google Colab / Kaggle Notebook containing dataset preparation, OpenCV filtering logic, training loops, and evaluation engines.
-* **`Task 02.docx`**: The comprehensive lab report containing full analytical answers, comparative matrices, training graphs, and visual filter examples.
+* **`Task 02 Results.md`**: The comprehensive lab report containing full analytical answers, comparative matrices, training graphs, and visual filter examples.
 * **`README.md`**: Project overview and setup documentation.
 
 ---
