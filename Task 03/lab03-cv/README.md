@@ -11,6 +11,7 @@
 This repository contains the full implementation and experimental analysis for **Lab 03: Edge Detection Techniques and Their Impact on Classification Performance**. The lab explores first-order, second-order, and multi-stage edge detection operators, evaluates their sensitivity to artificial noise, and analyzes how classical edge representations influence machine learning classification outcomes compared to raw and filtered input images.
 ---
 
+
 Results:
 <img width="640" height="480" alt="Task6_CM_Raw" src="https://github.com/user-attachments/assets/51c5ff6d-d3d0-49da-83b8-2816e14b9fdc" />
 <img width="640" height="480" alt="Task6_CM_Filtered" src="https://github.com/user-attachments/assets/7cbf0995-bf27-4244-9ec0-704c77da7314" />
