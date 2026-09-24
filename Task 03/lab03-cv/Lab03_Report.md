@@ -58,13 +58,13 @@ Canny edge detection follows a multi-stage pipeline:
 
 ## 4. Results & Tabular Analysis
 Results:
-<img width="640" height="480" alt="Task6_CM_Raw" src="https://github.com/user-attachments/assets/f0bd7137-bc18-47c6-b8e8-bb3c087b7617" />
-<img width="640" height="480" alt="Task6_CM_Filtered" src="https://github.com/user-attachments/assets/c3d9cc50-0c6d-4406-a7b2-5fb693b44f55" />
-<img width="640" height="480" alt="Task6_CM_Edge" src="https://github.com/user-attachments/assets/e322fa01-9c2e-4506-8a89-a0c383c8a57a" />
-<img width="1000" height="600" alt="Task6_BarChart" src="https://github.com/user-attachments/assets/33c49475-fc57-49d3-bc48-c380a81d92a9" />
-<img width="1000" height="400" alt="Task3_Canny_Parameters" src="https://github.com/user-attachments/assets/a9e477bb-a603-4432-9013-b0cec2da0dc6" />
-<img width="1500" height="400" alt="Task2_Noise_Effects" src="https://github.com/user-attachments/assets/6044223c-83e1-456f-b785-eb78eb9f40e1" />
-<img width="1800" height="400" alt="Task1_Edge_Comparison" src="https://github.com/user-attachments/assets/ecf873a2-b76d-4d9b-833b-6ee5728e08b2" />
+<img width="640" height="480" alt="Task6_CM_Raw" src="https://github.com/user-attachments/assets/e7e3351f-f915-49db-a0e1-c1633e9d9bc4" />
+<img width="640" height="480" alt="Task6_CM_Filtered" src="https://github.com/user-attachments/assets/23bbd497-c5cc-4902-ac33-b3a2ee8b9e54" />
+<img width="640" height="480" alt="Task6_CM_Edge" src="https://github.com/user-attachments/assets/e6f5c3ee-f68b-4566-adbb-6c2f5f24d272" />
+<img width="1000" height="600" alt="Task6_BarChart" src="https://github.com/user-attachments/assets/52b1a9df-5edd-4a05-8a75-258143220cfd" />
+<img width="1000" height="400" alt="Task3_Canny_Parameters" src="https://github.com/user-attachments/assets/ca510102-d71d-4558-af69-3d298322a95f" />
+<img width="1500" height="400" alt="Task2_Noise_Effects" src="https://github.com/user-attachments/assets/014ab34e-3d99-4f00-85db-77d7c7cc12e3" />
+<img width="1800" height="400" alt="Task1_Edge_Comparison" src="https://github.com/user-attachments/assets/a5976de5-9bfc-4cd3-b166-5b335e79e4e6" />
 
 
 ### Table 1: Effect of Noise and Preprocessing on Edge Detection
