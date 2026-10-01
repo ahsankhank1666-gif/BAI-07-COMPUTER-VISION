@@ -4,19 +4,24 @@
 *Below is the step-by-step edge detection pipeline applied to the dataset.*
 
 ### Image 1
-![Image 1 Pipeline](Figure_1.jpg)
+<img width="1400" height="800" alt="Figure_1" src="https://github.com/user-attachments/assets/df132de3-0a0b-4bf8-950b-71466d9f42ff" />
+
 
 ### Image 2
-![Image 2 Pipeline](Figure_2.jpg)
+<img width="1400" height="800" alt="Figure_2" src="https://github.com/user-attachments/assets/7676e7db-f2a4-4a1d-a99b-fa5c9d121999" />
+
 
 ### Image 3
-![Image 3 Pipeline](Figure_3.jpg)
+<img width="1400" height="800" alt="Figure_3" src="https://github.com/user-attachments/assets/66c78243-a204-4fff-962c-529262f9f4fc" />
+
 
 ### Image 4
-![Image 4 Pipeline](Figure_4.jpg)
+<img width="1400" height="800" alt="Figure_4" src="https://github.com/user-attachments/assets/339cb7db-ebc9-417d-9c33-8aa6e3cc2c18" />
+
 
 ### Image 5
-![Image 5 Pipeline](Figure_5.jpg)
+<img width="1400" height="800" alt="Figure_5" src="https://github.com/user-attachments/assets/40b807d7-b395-4eb8-bb8e-d2479edafb44" />
+
 
 ## 1. Quantitative Measurements
 *Calculated using `cv2.contourArea()` and `cv2.arcLength()` on the optimal Gaussian + Canny (100-200) pipeline.*
@@ -32,7 +37,8 @@
 ## 2. Method Comparison Matrix
 *Visual comparison of all 8 spatial filter and edge detector combinations.*
 
-![Method Comparison Grid](Figure_6.jpg)
+<img width="1920" height="967" alt="Figure_6" src="https://github.com/user-attachments/assets/0aa78de6-d53a-4a04-ac2a-3799e9927674" />
+
 
 | Method | Noise Handling | Edge Quality | Boundary Detection | Overall Performance |
 | :--- | :--- | :--- | :--- | :--- |
