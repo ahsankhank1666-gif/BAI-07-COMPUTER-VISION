@@ -1,0 +1,59 @@
+============================================================
+LAB 05 RESULTS REPORT
+HOG-Based Industrial Defect Detection (NEU Dataset)
+============================================================
+
+DATASET SUMMARY
+  Total images   : 480
+  Classes        : Crazing, Inclusion, Patches, Pitted, Rolled, Scratches
+  Image size     : 128x128 px
+  HOG cell size  : 8x8  |  orientations: 9
+
+CLASSIFIER RESULTS
+------------------------------------------------------------
+  SVM (RBF)
+    Accuracy  : 36.67%
+    Precision : 36.24%
+    Recall    : 36.67%
+    F1-score  : 35.86%
+    Train time: 3.9s
+
+  Random Forest
+    Accuracy  : 34.17%
+    Precision : 31.55%
+    Recall    : 34.17%
+    F1-score  : 31.69%
+    Train time: 2.5s
+
+  Logistic Regression
+    Accuracy  : 26.67%
+    Precision : 26.16%
+    Recall    : 26.67%
+    F1-score  : 25.87%
+    Train time: 0.2s
+
+HOG PARAMETER EXPERIMENT (SVM-Linear, macro F1 %)
+------------------------------------------------------------
+      Cell  Orient    Acc%     F1%     Dim
+    (4, 4)       6    28.3    28.1   23064
+    (4, 4)       9    23.3    22.5   34596
+    (4, 4)      12    22.5    21.8   46128
+    (8, 8)       6    27.5    24.3    5400
+    (8, 8)       9    28.3    27.6    8100
+    (8, 8)      12    28.3    27.2   10800
+  (16, 16)       6    29.2    28.1    1176
+  (16, 16)       9    27.5    27.4    1764
+  (16, 16)      12    33.3    33.1    2352
+
+ROBUSTNESS ANALYSIS
+------------------------------------------------------------
+  Condition               Acc%     F1%
+  clean                   36.7    35.9
+  brightness              29.2    24.6
+  gaussian_noise          22.5    16.6
+  rotation                20.8    10.5
+  blur                    15.0     6.6
+
+============================================================
+END OF REPORT
+============================================================
