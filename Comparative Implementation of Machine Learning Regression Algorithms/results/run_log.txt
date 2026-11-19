@@ -1,0 +1,42 @@
+========================================================================================
+COMPARATIVE IMPLEMENTATION OF ML REGRESSION ALGORITHMS
+========================================================================================
+
+Dataset   : boston_housing.csv  (506 rows x 14 columns)
+Features  : crim, zn, indus, chas, nox, rm, age, dis, rad, tax, ptratio, b, lstat
+Target    : medv (median home value in $1000s)
+Split     : 404 train / 102 test (80%:20%, random_state=42)
+Scaling   : StandardScaler fit on training data only (inside each pipeline)
+Models    : 6 algorithms
+
+  Linear Regression      MAE= 3.1891  MSE= 24.2911  RMSE= 4.9286  R2= 0.6688  ( 0.02s)
+  Decision Tree          MAE= 2.7245  MSE= 17.8156  RMSE= 4.2209  R2= 0.7571  ( 0.01s)
+  Random Forest          MAE= 2.0822  MSE=  9.0315  RMSE= 3.0052  R2= 0.8768  ( 0.46s)
+  Neural Network (MLP)   MAE= 2.2701  MSE= 12.3856  RMSE= 3.5193  R2= 0.8311  ( 0.49s)
+  XGBoost                MAE= 1.7081  MSE=  5.4074  RMSE= 2.3254  R2= 0.9263  ( 0.09s)
+  KNN                    MAE= 2.5922  MSE= 20.6055  RMSE= 4.5393  R2= 0.7190  ( 0.00s)
+
+----------------------------------------------------------------------------------------
+COMPARATIVE PERFORMANCE TABLE (test set; sorted by RMSE)
+----------------------------------------------------------------------------------------
+               Model    MAE     MSE   RMSE     R2  Train_R2  Fit_Time_s
+             XGBoost 1.7081  5.4074 2.3254 0.9263    0.9886      0.0855
+       Random Forest 2.0822  9.0315 3.0052 0.8768    0.9780      0.4615
+Neural Network (MLP) 2.2701 12.3856 3.5193 0.8311    0.8792      0.4886
+       Decision Tree 2.7245 17.8156 4.2209 0.7571    1.0000      0.0056
+                 KNN 2.5922 20.6055 4.5393 0.7190    0.8499      0.0031
+   Linear Regression 3.1891 24.2911 4.9286 0.6688    0.7509      0.0157
+
+BEST MODEL: XGBoost  (RMSE=2.3254, MAE=1.7081, R²=0.9263)
+
+Files in output directory: /home/user/BAI-07-COMPUTER-VISION/Comparative Implementation of Machine Learning Regression Algorithms/results
+  - actual_vs_predicted_all_models.png
+  - actual_vs_predicted_grid.png
+  - handwritten_step_by_step.txt
+  - metrics_comparison.png
+  - model_configuration.json
+  - performance_metrics.csv
+  - performance_table.md
+  - predictions_all_models.csv
+  - residual_distribution.png
+  - run_log.txt

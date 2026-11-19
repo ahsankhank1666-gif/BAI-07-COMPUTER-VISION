@@ -1,0 +1,204 @@
+HANDWRITTEN STEP-BY-STEP SOLUTIONS - SMALL SAMPLE FROM THE DATASET
+Dataset: boston_housing.csv  |  Target y = MEDV (median house value, $1000s)
+Sample used below: the first five houses of the dataset
+House  rm (rooms)  lstat (%)  MEDV ($1000s)
+-----  ----------  ---------  -------------
+H1     6.575       4.98       24.0         
+H2     6.421       9.14       21.6         
+H3     7.185       4.03       34.7         
+H4     6.998       2.94       33.4         
+H5     7.147       5.33       36.2         
+
+==============================================================================
+1. LINEAR REGRESSION - normal equation, one feature, 3 houses
+==============================================================================
+
+Model: y_hat = b0 + b1*x, with x = rm, using H1-H3
+x  = [6.575, 6.421, 7.185]
+y  = [24.0, 21.6, 34.7]
+
+Step 1 - sample means:
+  x_bar = (6.575 + 6.421 + 7.185) / 3 = 6.72700
+  y_bar = (24.0 + 21.6 + 34.7) / 3 = 26.76667
+
+Step 2 - deviations and their products:
+House  x_i - x_bar  y_i - y_bar  product   squared x dev
+-----  -----------  -----------  --------  -------------
+H1     -0.15200     -2.76667     +0.42053  0.02310      
+H2     -0.30600     -5.16667     +1.58100  0.09364      
+H3     +0.45800     +7.93333     +3.63347  0.20976      
+
+Step 3 - sums and coefficients:
+  S_xy = sum((x_i-x_bar)(y_i-y_bar)) = 5.63500
+  S_xx = sum((x_i-x_bar)^2)          = 0.32650
+  b1 = S_xy / S_xx = 5.63500 / 0.32650 = 17.25859
+  b0 = y_bar - b1*x_bar = 26.76667 - 17.25859*6.72700 = -89.33190
+  => y_hat = -89.33190 + 17.25859 * rm
+
+Step 4 - predictions and residuals on the sample:
+House  Actual y  Predicted y_hat  Residual y-y_hat
+-----  --------  ---------------  ----------------
+H1     24.00     24.1434          -0.1434         
+H2     21.60     21.4855          +0.1145         
+H3     34.70     34.6711          +0.0289         
+  (Two fitted coefficients, three points: least squares minimises the SSE.)
+
+Step 5 - matrix form for 2 features and 5 houses: beta = (X'X)^-1 X'y
+  Design matrix X (rows = [1, rm, lstat]):
+    H1: [1,  6.575,  4.98]
+    H2: [1,  6.421,  9.14]
+    H3: [1,  7.185,  4.03]
+    H4: [1,  6.998,  2.94]
+    H5: [1,  7.147,  5.33]
+  X'X = [5.000, 34.326, 26.420] ; [34.326, 236.136, 179.055] ; [26.420, 179.055, 161.633]
+  X'y = [149.900, 1038.268, 747.927]
+  beta (b0, b_rm, b_lstat) = (-101.6966, 19.1664, 0.0180)
+  sklearn check           = (-101.6966, 19.1664, 0.0180)  -> identical
+  Example: H1 prediction = b0 + b_rm*6.575 + b_lstat*4.98 = 24.4124 (actual 24.0)
+
+==============================================================================
+2. DECISION TREE REGRESSION - CART variance reduction, 4 houses
+==============================================================================
+
+Feature = lstat; candidate split s = 4.505 (midpoint of 2.94 and 4.03)
+Left  (lstat <= 4.505): ['H3', 'H4']  y = [34.7, 33.4]
+Right (lstat >  4.505): ['H1', 'H2']  y = [24.0, 21.6]
+
+Step 1 - parent impurity (MSE of a constant predictor):
+  y_bar = (24.0 + 21.6 + 34.7 + 33.4) / 4 = 28.4250
+  MSE_parent = ((24.0-28.4250)^2 + (21.6-28.4250)^2 + (34.7-28.4250)^2 + (33.4-28.4250)^2) / 4 = 32.5719
+
+Step 2 - child impurities:
+  left mean  = (34.7 + 33.4)/2 = 34.0500
+  left MSE   = ((34.7-34.0500)^2 + (33.4-34.0500)^2)/2 = 0.4225
+  right mean = (24.0 + 21.6)/2 = 22.8000
+  right MSE  = ((24.0-22.8000)^2 + (21.6-22.8000)^2)/2 = 1.4400
+  weighted child MSE = 2/4*0.4225 + 2/4*1.4400 = 0.9313
+
+Step 3 - variance reduction (gain) of the split:
+  gain = MSE_parent - weighted_child_MSE = 32.5719 - 0.9313 = 31.6406
+  The algorithm picks the split with the LARGEST gain; leaf prediction = mean of y in leaf.
+
+sklearn check: split threshold = 4.505, left leaf (node 1) = 34.0500, right leaf (node 2) = 22.8000  -> matches by hand
+
+==============================================================================
+3. RANDOM FOREST REGRESSION - bootstrap + stump averaging, 5 houses
+==============================================================================
+
+Tree 1: bootstrap indices = [0, 0, 2, 3, 3]  -> lstat = [4.98, 4.98, 4.03, 2.94, 2.94], MEDV = [24.0, 24.0, 34.7, 33.4, 33.4]
+  out-of-bag (unused) houses = ['H2', 'H5']
+  best stump: s=4.505, gain=23.2067, left leaf=33.8333, right leaf=24.0000
+House  Tree prediction
+-----  ---------------
+H1     24.0000        
+H2     24.0000        
+H3     33.8333        
+H4     33.8333        
+H5     24.0000        
+
+Tree 2: bootstrap indices = [1, 1, 2, 4, 4]  -> lstat = [9.14, 9.14, 4.03, 5.33, 5.33], MEDV = [21.6, 21.6, 34.7, 36.2, 36.2]
+  out-of-bag (unused) houses = ['H1', 'H4']
+  best stump: s=7.235, gain=47.7144, left leaf=35.7000, right leaf=21.6000
+House  Tree prediction
+-----  ---------------
+H1     35.7000        
+H2     21.6000        
+H3     35.7000        
+H4     35.7000        
+H5     35.7000        
+
+Forest output = mean of the 2 tree predictions (full model uses 300 trees):
+House  Tree 1  Tree 2  Forest (average)  Actual
+-----  ------  ------  ----------------  ------
+H1     24.000  35.700  29.8500           24.0  
+H2     24.000  21.600  22.8000           21.6  
+H3     33.833  35.700  34.7667           34.7  
+H4     33.833  35.700  34.7667           33.4  
+H5     24.000  35.700  29.8500           36.2  
+  Averaging decorrelated trees reduces variance compared with a single tree.
+
+==============================================================================
+4. NEURAL NETWORK REGRESSION - one forward + backward pass, H1
+==============================================================================
+
+Tiny net: 2 inputs -> 1 ReLU neuron -> 1 linear output
+Initial weights: w1 = [0.5, -0.2], b1 = -1.00, w2 = 0.80, b2 = 1.00
+Input H1: x = [6.575, 4.98], target = 24.0
+
+Step 1 - forward pass:
+  z1   = w1.x + b1 = 0.5*6.575 + (-0.2)*4.98 + (-1.0) = 1.2915
+  a1   = ReLU(z1) = max(0, 1.2915) = 1.2915
+  y_hat = w2*a1 + b2 = 0.8*1.2915 + 1.0 = 2.0332
+  L = 1/2*(y - y_hat)^2 = 0.5*(24.0 - 2.0332)^2 = 241.2702
+
+Step 2 - backpropagation (chain rule):
+  dL/dy_hat = y_hat - y = -21.9668
+  dL/dw2 = dL/dy_hat * a1 = -28.3701
+  dL/db2 = dL/dy_hat      = -21.9668
+  dL/dw1 = dL/dy_hat * w2 * 1[z>0] * x = [-115.5454, -87.5157]
+  dL/db1 = dL/dy_hat * w2 * 1[z>0] = -17.5734  (z>0 so neuron is active)
+
+Step 3 - gradient descent update (eta = 0.001):
+  w2_new = 0.8000 - 0.001*(-28.3701) = 0.828370
+  b2_new = 1.0000 - 0.001*(-21.9668) = 1.021967
+  w1_new = [0.615545, -0.112484], b1_new = -0.982427
+  new prediction = 3.0967 (moved toward 24.0); new loss = 218.4737
+  Repeat over all samples/epochs with Adam (full model: 64-32 ReLU layers, 314 iterations).
+
+==============================================================================
+5. XGBOOST REGRESSION - residual fitting, one boosting round, 4 houses
+==============================================================================
+
+Step 1 - initial prediction (base score) = mean(y):
+  F0(x) = 28.4250 for every house
+
+Step 2 - negative gradients (residuals) r_i = y_i - F0(x_i):
+House  Actual y  Residual r_i
+-----  --------  ------------
+H1     24.0      -4.4250     
+H2     21.6      -6.8250     
+H3     34.7      +6.2750     
+H4     33.4      +4.9750     
+
+Step 3 - fit a depth-1 tree on residuals, split at lstat = 5.005:
+  left:  G_L = (-4.4250 + +6.2750 + +4.9750) = +6.8250, H_L = 3
+  right: G_R = -6.8250, H_R = 1
+  leaf_L = G_L/(H_L+lambda) = +6.8250/(3+1) = +1.70625
+  leaf_R = G_R/(H_R+lambda) = -6.8250/(1+1) = -3.41250
+  split gain = 0.5*[G_L^2/(H_L+lambda) + G_R^2/(H_R+lambda)
+                - (G_L+G_R)^2/(H_L+H_R+lambda)] = 17.4677  (positive -> keep split)
+
+Step 4 - update F1 = F0 + eta*leaf (eta = 0.3):
+House  Leaf value  F1 prediction  Actual
+-----  ----------  -------------  ------
+H1     +1.7062     28.9369        24.0  
+H2     -3.4125     27.4013        21.6  
+H3     +1.7062     28.9369        34.7  
+H4     +1.7062     28.9369        33.4  
+  Each later tree repeats this on the NEW residuals (full model: 400 trees, depth 3, eta = 0.05).
+
+==============================================================================
+6. K-NEAREST NEIGHBOURS REGRESSION - H1 query, k=3, 2 raw features
+==============================================================================
+
+Query H1 = (rm=6.575, lstat=4.98); distance d = sqrt((rm-rm_q)^2 + (lstat-lstat_q)^2)
+Step 1 - distances to every other house in the sample:
+Rank  House  (rm, lstat)   d^2      d       Among k=3?  MEDV
+----  -----  ------------  -------  ------  ----------  ----
+1     H5     (7.147,5.33)  0.4497   0.6706  YES         36.2
+2     H3     (7.185,4.03)  1.2746   1.1290  YES         34.7
+3     H4     (6.998,2.94)  4.3405   2.0834  YES         33.4
+4     H2     (6.421,9.14)  17.3293  4.1628  no          21.6
+
+Step 2 - average the targets of the 3 nearest neighbours:
+  neighbours = H5 (d=0.6706, y=36.2), H3 (d=1.1290, y=34.7), H4 (d=2.0834, y=33.4)
+  y_hat(H1) = (36.2 + 34.7 + 33.4) / 3 = 34.7667
+  actual H1 price = 24.0; absolute error = 10.7667
+  NOTE: the full implementation standardises features first - essential when features such as 'tax' (0-711) and 'nox' (0-1) are combined. Here raw values are used only to keep the arithmetic readable.
+
+==============================================================================
+SUMMARY
+==============================================================================
+Each handwritten derivation above uses a 3-5 house subset of the actual dataset.
+The Python implementation applies the SAME equations (via scikit-learn / XGBoost)
+to all 404 training houses and reports metrics on the 102 held-out houses.
