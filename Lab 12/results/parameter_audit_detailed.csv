@@ -1,0 +1,9 @@
+model,layer,K,Cin,Cout,params
+A,conv1,3x3,3,5,140
+A,conv2,3x3,5,10,460
+A,gap,-,10,10,0
+A,dense,-,10,10,110
+B,conv1,5x5,3,5,380
+B,conv2,5x5,5,10,1260
+B,gap,-,10,10,0
+B,dense,-,10,10,110

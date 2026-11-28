@@ -1,0 +1,17 @@
+# Deep Learning Lab — CNN Visualization & Critical Analysis
+# Python 3.10+ required (tested on 3.13)
+
+numpy>=1.26
+scipy>=1.11
+matplotlib>=3.8
+pillow>=10.1
+
+# Deep-learning framework used for the two architectures + model summaries.
+# A CPU-only build is plenty for this assignment:
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+torch>=2.2
+torchinfo>=1.8
+
+# To open / re-run the notebook
+jupyter>=1.0
+nbformat>=5.9

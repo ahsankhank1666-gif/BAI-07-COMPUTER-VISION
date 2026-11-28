@@ -1,0 +1,3 @@
+Model,Conv Architecture,Kernel Size,Pooling Type,Manual Count,Code Output
+Model A (Standard),Conv1: 5 filters; Conv2: 10 filters,3 x 3,"Max Pooling (2x2, stride 2)",710,710
+Model B (Large Kernel),Conv1: 5 filters; Conv2: 10 filters,5 x 5,"Average Pooling (2x2, stride 2)",1750,1750
