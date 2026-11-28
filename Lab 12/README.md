@@ -7,7 +7,7 @@
 
 ---
 
-## 📦 Deliverables (what to upload / what the rubric grades)
+## 📦 Deliverables:
 
 | # | Rubric item (weight) | Deliverable | File in this repo |
 |---|---|---|---|
@@ -96,9 +96,3 @@ screenshot the notebook cell yourself).
     └── model_B_summary.txt / .png
 ```
 
-## ⚖️ Academic integrity
-
-AI-assisted coding is permitted under Section 1 of the assignment; this notebook is provided as a
-reproducible, fully-commented implementation. Code alone carries **zero** credit — you must be able
-to explain every feature map, calculation, and trade-off in the viva (see `REPORT.md` for the
-defense-ready answers).
