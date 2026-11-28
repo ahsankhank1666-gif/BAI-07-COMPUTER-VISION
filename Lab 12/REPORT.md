@@ -4,10 +4,10 @@
 
 | Field | Value |
 |---|---|
-| Student Name | _(fill in)_ |
-| Registration / Roll No. | _(fill in)_ |
-| Course / Section | _(fill in)_ |
-| Submission Date | _(fill in)_ |
+| Student Name | _(Muhammad Ahsan Khan)_ |
+| Registration / Roll No. | _(FA23-BAI-052)_ |
+| Course / Section | _(BAI )_ |
+| Submission Date | _(27-11-2026)_ |
 
 **Files produced by this submission:** `CNN_Visualization_Assignment.ipynb` (full code + answers), `results/` (grid, summaries, CSVs), `README.md`, `HANDWRITTEN_CALCULATIONS.md`.
 
